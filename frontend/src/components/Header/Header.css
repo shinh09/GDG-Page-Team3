@@ -1,0 +1,29 @@
+.header {
+    width: 100%;
+    background-color: var(--white);
+  }
+  
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    height: 68px; /* Figma 기준 */
+  }
+  
+  /* 좌 / 중 / 우 */
+  .header-left {
+    font-weight: 700;
+  }
+  
+  .header-center {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+  }
+  
+  .header-right {
+    display: flex;
+    gap: 16px;
+  }
+  

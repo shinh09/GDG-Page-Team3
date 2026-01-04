@@ -1,0 +1,32 @@
+.btn {
+    height: 44px;
+    padding: 0 24px;
+    border-radius: 12px;
+  
+    font: var(--subhead-03);
+    cursor: pointer;
+    border: none;
+  
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  /* primary (검정 버튼) */
+  .btn-primary {
+    background: var(--g-15);
+    color: var(--white);
+  }
+  
+  /* outline */
+  .btn-outline {
+    background: var(--white);
+    color: var(--g-15);
+    border: 1.5px solid var(--g-15);
+  }
+  
+  /* disabled */
+  .btn.disabled {
+    background: var(--g-06);
+    color: var(--white);
+    cursor: not-allowed;
+  }
+  

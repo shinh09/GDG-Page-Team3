@@ -1,0 +1,19 @@
+.post-list-item {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+  
+    background: var(--white);
+    border-radius: 16px;
+  }
+  
+  .post-list-item h4 {
+    font: var(--subhead-03);
+    color: var(--g-14);
+  }
+  
+  .post-list-item span {
+    font: var(--caption);
+    color: var(--g-09);
+  }
+  
