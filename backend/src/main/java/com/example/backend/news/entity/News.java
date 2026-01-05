@@ -1,12 +1,11 @@
 package com.example.backend.news.entity;
 
-import com.example.backend.common.BaseEntity;
-import com.example.backend.member.entity.User;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,30 +13,50 @@ import java.util.List;
 @Table(name = "news")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class News extends BaseEntity {
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
+public class News {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 200)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Lob
+    @Column(nullable = false)
     private String content;
 
+    @Column(name = "thumbnail_url", length = 255)
     private String thumbnailUrl;
 
-    private Integer generation;
-
     @Column(nullable = false)
-    private Integer viewCount = 0;
+    private int generation;   // 🔹 기수 필터
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "author_id")
-    private User author;
+    @Column(name = "author_id", nullable = false)
+    private Long authorId;    // 🔹 작성자 (users.id)
 
-    // 뉴스에 포함된 파일 리스트 (1:N)
-    @OneToMany(mappedBy = "news", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "view_count", nullable = false)
+    private int viewCount;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
+    @OneToMany(
+            mappedBy = "news",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    @Builder.Default
     private List<NewsFile> files = new ArrayList<>();
+
+    public void increaseViewCount() {
+        this.viewCount++;
+    }
 }

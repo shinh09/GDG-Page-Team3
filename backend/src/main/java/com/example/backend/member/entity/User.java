@@ -1,17 +1,20 @@
 package com.example.backend.member.entity;
 
-import com.example.backend.common.BaseEntity;
-import com.example.backend.member.enums.MemberRole; // 프로젝트의 실제 Role Enum 경로로 확인 필요
+import com.example.backend.member.enums.MemberRole;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "users")
+@Table(name = "members")
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Builder
-public class User extends BaseEntity { // 1. BaseEntity 상속 추가
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +27,7 @@ public class User extends BaseEntity { // 1. BaseEntity 상속 추가
     private Integer generation;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, length = 10)
+    @Column(nullable = false, length = 20)
     private MemberRole role;
 
     @Column(length = 50, nullable = false)
@@ -42,15 +45,23 @@ public class User extends BaseEntity { // 1. BaseEntity 상속 추가
     @Column(name = "password_hash", length = 255, nullable = false)
     private String passwordHash;
 
-    @Column(name = "is_email_verified", nullable = false)
+    @Column(nullable = false)
     @Builder.Default
-    private Boolean isEmailVerified = false;
+    private boolean emailVerified = false;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 
     /* ===============================
-       Domain Methods (선택)
+       Domain Methods
        =============================== */
 
     public void verifyEmail() {
-        this.isEmailVerified = true;
+        this.emailVerified = true;
     }
 }
