@@ -26,6 +26,7 @@ public enum NewsErrorCode implements BaseErrorCode {
     @ExplainError("size가 1 미만이거나 서버 정책의 최대 size를 초과한 경우 발생합니다.")
     INVALID_SIZE(BAD_REQUEST, "NEWS_400_3", "페이지 크기 값이 올바르지 않습니다."),
 
+//    필요 없을 것 같기도.. 어차피 버튼 형식이니까?
     @ExplainError("generation 필터가 음수이거나 허용 범위를 벗어난 경우 발생합니다.")
     INVALID_GENERATION_FILTER(BAD_REQUEST, "NEWS_400_4", "기수(generation) 필터 값이 올바르지 않습니다."),
 
@@ -42,23 +43,20 @@ public enum NewsErrorCode implements BaseErrorCode {
 //    @ExplainError("본문 길이가 허용 최대치를 초과한 경우 발생합니다.")
 //    CONTENT_TOO_LONG(BAD_REQUEST, "NEWS_400_8", "내용 길이가 허용 범위를 초과했습니다."),
 
-    @ExplainError("generation 값이 누락되었거나 0 이하 등 유효하지 않은 값인 경우 발생합니다.")
-    GENERATION_INVALID(BAD_REQUEST, "NEWS_400_9", "기수(generation) 값이 올바르지 않습니다."),
-
     @ExplainError("작성자 식별자(authorId)가 누락되었거나 유효하지 않은 경우 발생합니다.")
-    AUTHOR_ID_INVALID(BAD_REQUEST, "NEWS_400_10", "작성자 정보가 올바르지 않습니다."),
+    AUTHOR_ID_INVALID(BAD_REQUEST, "NEWS_400_8", "작성자 정보가 올바르지 않습니다."),
 
     @ExplainError("thumbnailUrl이 존재하지만 URL 형식이 올바르지 않은 경우 발생합니다.")
-    INVALID_THUMBNAIL_URL(BAD_REQUEST, "NEWS_400_11", "썸네일 URL 형식이 올바르지 않습니다."),
+    INVALID_THUMBNAIL_URL(BAD_REQUEST, "NEWS_400_9", "썸네일 URL 형식이 올바르지 않습니다."),
 
     @ExplainError("첨부 파일 리스트는 존재하지만 내부 요소가 null이거나 필수 필드가 비어있는 경우 발생합니다.")
-    INVALID_FILE_PAYLOAD(BAD_REQUEST, "NEWS_400_12", "첨부 파일 정보가 올바르지 않습니다."),
+    INVALID_FILE_PAYLOAD(BAD_REQUEST, "NEWS_400_10", "첨부 파일 정보가 올바르지 않습니다."),
 
     @ExplainError("첨부 파일 URL이 비어있거나 URL 형식이 올바르지 않은 경우 발생합니다.")
-    INVALID_FILE_URL(BAD_REQUEST, "NEWS_400_13", "첨부 파일 URL 형식이 올바르지 않습니다."),
+    INVALID_FILE_URL(BAD_REQUEST, "NEWS_400_11", "첨부 파일 URL 형식이 올바르지 않습니다."),
 
     @ExplainError("첨부 파일 타입(enum)이 유효하지 않거나 서버가 지원하지 않는 타입인 경우 발생합니다.")
-    INVALID_FILE_TYPE(BAD_REQUEST, "NEWS_400_14", "첨부 파일 타입이 올바르지 않습니다."),
+    INVALID_FILE_TYPE(BAD_REQUEST, "NEWS_400_12", "첨부 파일 타입이 올바르지 않습니다."),
 
     @ExplainError("동일 조건에서 중복 생성 등 도메인 무결성 정책에 위배되는 경우 발생합니다.")
     NEWS_CONFLICT(CONFLICT, "NEWS_409_1", "뉴스/소식 생성 요청이 충돌했습니다.");

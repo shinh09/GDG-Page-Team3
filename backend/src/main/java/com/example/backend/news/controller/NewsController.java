@@ -1,6 +1,6 @@
 package com.example.backend.news.controller;
 
-import com.example.backend.global.dto.CreateResponse;
+import com.example.backend.common.CreateResponse;
 import com.example.backend.news.dto.*;
 //import com.example.backend.news.service.NewsService;
 

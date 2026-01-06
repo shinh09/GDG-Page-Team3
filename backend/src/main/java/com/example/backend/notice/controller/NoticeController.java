@@ -1,6 +1,6 @@
 package com.example.backend.notice.controller;
 
-import com.example.backend.global.dto.CreateResponse;
+import com.example.backend.common.CreateResponse;
 import com.example.backend.notice.dto.CreateNoticeRequest;
 import com.example.backend.notice.dto.NoticeDetailResponse;
 import com.example.backend.notice.dto.NoticeSummaryResponse;
