@@ -22,4 +22,25 @@ public class ExampleController {
 	public void example() {
 	}
 
+    @GetMapping("/main")
+    @DevelopOnlyApi
+    @ApiErrorCodeExample(GlobalErrorCode.class)
+    @Operation(summary = "메인페이지 관련 에러 코드 나열")
+    public void example2() {
+    }
+
+    @GetMapping("/news")
+    @DevelopOnlyApi
+    @ApiErrorCodeExample(GlobalErrorCode.class)
+    @Operation(summary = "뉴스/소식 관련 에러 코드 나열")
+    public void example3() {
+    }
+
+    @GetMapping("/notice")
+    @DevelopOnlyApi
+    @ApiErrorCodeExample(GlobalErrorCode.class)
+    @Operation(summary = "공지 관련 에러 코드 나열")
+    public void example4() {
+    }
+
 }
