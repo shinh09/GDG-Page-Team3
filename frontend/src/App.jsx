@@ -11,6 +11,12 @@ import NoticeDetailPage from "./pages/notice/NoticeDetailPage";
 import NewsDetailPage from "./pages/news/NewsDetailPage";
 import NoticeWritePage from "./pages/notice/NoticeWritePage";
 import NewsWritePage from "./pages/news/NewsWritePage";
+import LoginPage from "./pages/auth/LoginPage";
+import FindPasswordPage from "./pages/auth/FindPasswordPage";
+import PasswordResetActionPage from "./pages/auth/PasswordResetActionPage";
+import SignupPage from "./pages/auth/SignupPage";
+import SignupVerifiedPage from "./pages/auth/SignupVerifiedPage";
+import SignupEmailVerifiedNoticePage from "./pages/auth/SignupEmailVerifiedNoticePage";
 
 function App() {
   return (
@@ -27,6 +33,12 @@ function App() {
           <Route path="/news/:id" element={<NewsDetailPage />} />
           <Route path="/members" element={<MembersPage />} />
           <Route path="/mypage" element={<MyPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/find-password" element={<FindPasswordPage />} />
+          <Route path="/auth/action" element={<PasswordResetActionPage />} />
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/signup/verified" element={<SignupVerifiedPage />} />
+          <Route path="/signup/email-verified" element={<SignupEmailVerifiedNoticePage />} />
         </Route>
       </Routes>
     </BrowserRouter>
