@@ -16,9 +16,6 @@ public class ProfilePasswordExceptionDocs implements SwaggerExampleExceptions {
     @ExplainError("새 비밀번호가 현재 비밀번호와 똑같을 때 발생합니다.")
     public GlobalCodeException 비밀번호_중복_설정 = new ProfileException(ProfileErrorCode.SAME_AS_CURRENT_PASSWORD);
 
-    @ExplainError("비밀번호 재설정 토큰이 만료되었거나 이미 사용되었을 때 발생합니다.")
-    public GlobalCodeException 유효하지_않은_토큰 = new ProfileException(ProfileErrorCode.PASSWORD_RESET_TOKEN_EXPIRED);
-
     @ExplainError("새 비밀번호가 보안 규칙(길이, 조합 등)에 맞지 않을 때 발생합니다.")
     public GlobalCodeException 새_비밀번호_규칙_위반 = new ProfileException(ProfileErrorCode.INVALID_NEW_PASSWORD);
 }
