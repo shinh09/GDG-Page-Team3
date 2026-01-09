@@ -12,6 +12,8 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import com.example.backend.member.exception.MemberException;
 import com.example.backend.news.exception.NewsException;
+import com.example.backend.notice.exception.NoticeException;
+import com.example.backend.profile.exception.ProfileException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -163,6 +165,36 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NewsException.class)
     public ResponseEntity<ErrorResponse> handleNewsException(
             NewsException ex,
+            HttpServletRequest request
+    ) {
+        ErrorReason reason = ex.getErrorReason();
+        ErrorResponse errorResponse =
+                new ErrorResponse(reason, request.getRequestURL().toString());
+        return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                .body(errorResponse);
+    }
+
+    /**
+     * 공지 도메인 예외
+     */
+    @ExceptionHandler(NoticeException.class)
+    public ResponseEntity<ErrorResponse> handleNoticeException(
+            NoticeException ex,
+            HttpServletRequest request
+    ) {
+        ErrorReason reason = ex.getErrorReason();
+        ErrorResponse errorResponse =
+                new ErrorResponse(reason, request.getRequestURL().toString());
+        return ResponseEntity.status(HttpStatus.valueOf(reason.getStatus()))
+                .body(errorResponse);
+    }
+
+    /**
+     * 프로필 도메인 예외
+     */
+    @ExceptionHandler(ProfileException.class)
+    public ResponseEntity<ErrorResponse> handleProfileException(
+            ProfileException ex,
             HttpServletRequest request
     ) {
         ErrorReason reason = ex.getErrorReason();
