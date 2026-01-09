@@ -39,3 +39,19 @@ logging:
   level:
     org.springframework: INFO
     org.hibernate: DEBUG  # Hibernate의 SQL 로그 출력 (선택 사항)
+    com.example.backend.auth: DEBUG  # Auth 도메인 로그 레벨
+    com.google.firebase: INFO  # Firebase 로그 레벨
+
+# Firebase 설정
+firebase:
+  credentials:
+    # Firebase 서비스 계정 키 파일 경로 (classpath 리소스)
+    resource: classpath:gdg-team3-firebase-adminsdk-fbsvc-56fc83e392.json
+  # Firebase Project ID (JSON 파일에 이미 포함되어 있어 선택사항)
+  project-id: gdg-team3
+
+# Auth 도메인 설정
+auth:
+  # 이메일 도메인 제한 (학교 이메일만 허용)
+  allowed-email-domains:
+    - seoultech.ac.kr
