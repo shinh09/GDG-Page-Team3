@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import GDGLogo from "../Logo/GDGLogo";
 import "../../styles/layout.css";
@@ -7,12 +7,11 @@ import "./Header.css";
 
 function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const location = useLocation();
 
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
     setIsLoggedIn(loggedIn);
-  }, [location.pathname]);
+  }, []);
 
   return (
     <header className="header">
