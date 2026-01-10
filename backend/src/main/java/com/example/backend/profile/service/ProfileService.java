@@ -115,6 +115,10 @@ public class ProfileService {
      */
     public ProfileImageUrlResponse updateProfileImage(Long userId, String imageUrl) {
 
+        if (imageUrl == null || imageUrl.isBlank()) {
+            throw new ProfileException(ProfileErrorCode.INVALID_IMAGE_URL);
+        }
+
         Profile profile = profileRepository.findById(userId)
                 .orElseThrow(() -> new ProfileException(ProfileErrorCode.PROFILE_NOT_FOUND));
 
@@ -131,10 +135,7 @@ public class ProfileService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ProfileException(ProfileErrorCode.PROFILE_NOT_FOUND));
 
-        if (!passwordEncoder.matches(request.getCurrentPassword(), user.getPasswordHash())) {
-            throw new ProfileException(ProfileErrorCode.INVALID_CURRENT_PASSWORD);
-        }
-
+        // 새 비밀번호가 기존 비밀번호와 일치한지 체크
         if (passwordEncoder.matches(request.getNewPassword(), user.getPasswordHash())) {
             throw new ProfileException(ProfileErrorCode.SAME_AS_CURRENT_PASSWORD);
         }
