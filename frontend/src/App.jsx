@@ -6,7 +6,7 @@ import MainPage from "./pages/main/MainPage";
 import NoticePage from "./pages/notice/NoticePage";
 import NewsPage from "./pages/news/NewsPage";
 import MembersPage from "./pages/members/MembersPage";
-import MyPage from "./pages/mypage/MyPage";
+import MyPage from "./pages/mypage/Mypage";
 import MyPageEdit from "./pages/mypage/MyPageEdit";
 import NoticeDetailPage from "./pages/notice/NoticeDetailPage";
 import NewsDetailPage from "./pages/news/NewsDetailPage";

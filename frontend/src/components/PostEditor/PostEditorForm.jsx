@@ -8,17 +8,18 @@ import PostEditorLayout from "./PostEditorLayout";
 
 import "./PostEditorForm.css";
 
-function PostEditorForm({ onSubmit, extraFields }) {
+function PostEditorForm({ onSubmit, extraFields, submitting = false }) {
   const editor = usePostEditorState();
 
   const handleSave = () => {
+    if (submitting) return; // ✅ 중복 저장 방지
     const payload = editor.getPayload();
     if (onSubmit) onSubmit(payload);
     else console.log(payload);
   };
 
   return (
-    <PostEditorLayout onSave={handleSave} saveDisabled={!editor.canSave}>
+    <PostEditorLayout onSave={handleSave} saveDisabled={!editor.canSave || submitting}>
       <div className="post-editor-body">
         <div className="post-editor-left">
           <ImagePickerButton onPick={editor.addImageBlock} />
