@@ -5,8 +5,6 @@ import "./MyPageEdit.css";
 
 function MyPageEdit() {
   const navigate = useNavigate();
-
-  // ✅ 파일 선택용 input을 버튼으로 트리거하기 위해 ref 사용
   const fileInputRef = useRef(null);
 
   const initial = useMemo(
@@ -17,13 +15,13 @@ function MyPageEdit() {
       part: "파트",
       studentId: "21204482",
       major: "지디지학과",
-
-      // 이미지(초기 더미)
       imageUrl: "https://placehold.co/600x600",
-
-      // 링크 입력(스샷처럼 1줄만 보여주고 싶으면 여기만 1개로)
       platform: "플랫폼",
       link: "황길동",
+
+      // ✅ 추가
+      bio: "",
+      techStacks: [], // ["React", "Spring", ...]
     }),
     []
   );
@@ -31,43 +29,62 @@ function MyPageEdit() {
   const [form, setForm] = useState(initial);
   const [previewUrl, setPreviewUrl] = useState(initial.imageUrl);
 
+  // ✅ 기술스택 입력용
+  const [stackInput, setStackInput] = useState("");
+
   const setValue = (key, value) =>
     setForm((prev) => ({
       ...prev,
       [key]: value,
     }));
 
-  // ✅ 이미지 버튼 클릭 → 파일 선택창 열기
   const openFilePicker = () => {
     if (fileInputRef.current) fileInputRef.current.click();
   };
 
-  // ✅ 이미지 선택하면 즉시 미리보기
   const handleImageChange = (e) => {
     const file = e.target.files && e.target.files[0];
     if (!file) return;
-
-    // 이미지 파일만
     if (!file.type.startsWith("image/")) {
       alert("이미지 파일만 업로드할 수 있습니다.");
       return;
     }
-
     const url = URL.createObjectURL(file);
     setPreviewUrl(url);
+  };
 
-    // 나중에 백엔드 붙일 때 file도 state로 들고 있으면 됨
-    // setForm(prev => ({ ...prev, imageFile: file }))
+  // ✅ tech stack add/remove
+  const addStack = () => {
+    const v = stackInput.trim();
+    if (!v) return;
+    setForm((prev) => {
+      if (prev.techStacks.includes(v)) return prev;
+      return { ...prev, techStacks: [...prev.techStacks, v] };
+    });
+    setStackInput("");
+  };
+
+  const removeStack = (name) => {
+    setForm((prev) => ({
+      ...prev,
+      techStacks: prev.techStacks.filter((s) => s !== name),
+    }));
+  };
+
+  const onStackKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      addStack();
+    }
   };
 
   const handleSave = () => {
-    // ✅ 지금은 UI만: 저장 동작은 나중에 백엔드 연결
+    // ✅ 지금은 UI만
     navigate("/mypage");
   };
 
   return (
     <section className="container">
-      {/* 상단: 좌측 타이틀 / 우측 저장 버튼 */}
       <div className="mypage-edit-top">
         <h1 className="mypage-edit-title">마이페이지</h1>
         <button className="mypage-edit-save" onClick={handleSave}>
@@ -75,9 +92,7 @@ function MyPageEdit() {
         </button>
       </div>
 
-      {/* 중앙 컨텐츠 */}
       <div className="mypage-edit-center">
-        {/* 프로필 이미지 */}
         <div className="mypage-edit-avatar">
           <img src={previewUrl} alt="profile" className="mypage-edit-avatar-img" />
 
@@ -85,7 +100,6 @@ function MyPageEdit() {
             이미지 수정
           </button>
 
-          {/* 실제 파일 input (숨김) */}
           <input
             ref={fileInputRef}
             type="file"
@@ -147,6 +161,47 @@ function MyPageEdit() {
             <div className="field full">
               <label>학과</label>
               <input value={form.major} onChange={(e) => setValue("major", e.target.value)} />
+            </div>
+
+            {/* ✅ 한줄 소개 */}
+            <div className="field full">
+              <label>한줄 소개</label>
+              <textarea
+                value={form.bio}
+                onChange={(e) => setValue("bio", e.target.value)}
+                placeholder="한줄 소개를 입력해주세요"
+                rows={3}
+              />
+            </div>
+
+            {/* ✅ 기술스택 */}
+            <div className="field full">
+              <label>기술 스택</label>
+              <div className="stack-row">
+                <input
+                  value={stackInput}
+                  onChange={(e) => setStackInput(e.target.value)}
+                  onKeyDown={onStackKeyDown}
+                  placeholder="예: React (Enter로 추가)"
+                />
+                <button type="button" className="stack-add" onClick={addStack}>
+                  추가
+                </button>
+              </div>
+
+              <div className="stack-chips">
+                {form.techStacks.map((s) => (
+                  <button
+                    type="button"
+                    key={s}
+                    className="stack-chip"
+                    onClick={() => removeStack(s)}
+                    title="클릭하면 삭제"
+                  >
+                    {s} ✕
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>

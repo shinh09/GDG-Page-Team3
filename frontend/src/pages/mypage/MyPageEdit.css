@@ -113,6 +113,38 @@
   .field select:focus {
     border-color: #111;
   }
+  .stack-row{
+    display:flex;
+    gap:8px;
+    align-items:center;
+  }
+  
+  .stack-add{
+    height: 40px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background:#111;
+    color:#fff;
+    cursor:pointer;
+  }
+  
+  .stack-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:10px;
+  }
+  
+  .stack-chip{
+    border: 1px solid #ddd;
+    background:#f6f6f6;
+    border-radius: 999px;
+    padding: 8px 12px;
+    cursor:pointer;
+    font-size: 14px;
+  }
+  
   
   /* 반응형 */
   @media (max-width: 600px) {
