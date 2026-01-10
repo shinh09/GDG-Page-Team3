@@ -116,10 +116,8 @@ const SignupPage = () => {
       );
       // 2) 인증 메일 발송 (인증 완료 후 /signup/verified로 이동)
       const verificationUrl = `${window.location.origin}/signup/email-verified`;
-      await sendEmailVerification(userCredential.user, {
-        url: verificationUrl,
-        handleCodeInApp: false,
-      });
+      await sendEmailVerification(userCredential.user);
+
       await signOut(auth);
       // 새로고침/탭 이동을 대비해 가입 정보를 저장
       const saved = JSON.stringify({
