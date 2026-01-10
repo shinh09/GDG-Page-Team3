@@ -203,14 +203,47 @@
   flex-wrap: wrap;
 }
 
+/* 카드 기본 */
 .activity-card {
-  width: 360px;
-  background: var(--gray-15);
-  color: var(--white);
-  padding: 40px;
-  border-radius: 24px;
+  width: 600px;              /* 스샷처럼 크게 쓰고 싶으면 */
+  height: 375px;
+  border-radius: 32px;
+  overflow: hidden;
+  position: relative;
   text-align: left;
+  display: flex;
+  align-items: flex-end;
 }
+
+/* 이미지 레이어 */
+.activity-card .activity-bg{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+}
+
+/* 어두운 오버레이(글자 가독성) */
+.activity-card .activity-overlay{
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 35%,
+    rgba(0,0,0,0.75) 100%
+  );
+}
+
+/* 텍스트 레이어 */
+.activity-card .activity-content{
+  position: relative;
+  z-index: 2;
+  padding: 43px 71px;        /* 너 피그마 값 */
+  color: var(--white);
+}
+
 
 /* ================= MORE ================= */
 .more {
