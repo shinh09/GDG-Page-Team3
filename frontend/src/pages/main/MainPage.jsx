@@ -129,28 +129,41 @@ const MainPage = () => {
         </p>
 
         <div className="activity-grid">
-          <div className="activity-card">
-            <b className="display-1">세션</b>
-            <p className="body-long-2">
-              관심 분야를 매주 함께 공부하고,
-              배운 내용에 대해 이야기하는 시간입니다.
-            </p>
+          <div className="activity-card has-image">
+            <img className="activity-bg" src="/session.png" alt="" aria-hidden="true" />
+            <div className="activity-overlay" />
+            <div className="activity-content">
+              <b className="display-1">세션</b>
+              <p className="body-long-2">
+                관심 분야를 매주 함께 공부하고,
+                배운 내용에 대해 이야기하는 시간입니다.
+              </p>
+            </div>
           </div>
 
-          <div className="activity-card">
-            <b className="display-1">소규모 프로젝트</b>
-            <p className="body-long-2">
-              다양한 파트 팀원들과 함께 간단한 서비스를 만들고,
-              결과를 공유합니다.
-            </p>
+          <div className="activity-card has-image">
+            <img className="activity-bg" src="/project.png" alt="" aria-hidden="true" />
+            <div className="activity-overlay" />
+            <div className="activity-content">
+              <b className="display-1">소규모 프로젝트</b>
+              <p className="body-long-2">
+                다양한 파트 팀원들과 함께 간단한 서비스를 만들고,
+                결과를 공유합니다.
+              </p>
+            </div>
           </div>
 
-          <div className="activity-card">
-            <b className="display-1">커뮤니티 활동</b>
-            <p className="body-long-2">밋업, 관심주제 공유</p>
+          <div className="activity-card has-image">
+            <img className="activity-bg" src="/community.png" alt="" aria-hidden="true" />
+            <div className="activity-overlay" />
+            <div className="activity-content">
+              <b className="display-1">커뮤니티 활동</b>
+              <p className="body-long-2">밋업, 관심주제 공유</p>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* ================= MORE ================= */}
       <section className="more snap-section">
